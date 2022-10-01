@@ -1,0 +1,17 @@
+﻿1st section,2nd Section,sub-section1,sub-section2,Question,Mandatory(M)/Optional(O),FieldType
+GRI 2,GRI 2-1(Oganization Details),2.1.a.1,,Please provide the company Legal Name,M,Text Field / Drop Down
+GRI 2,GRI 2-1(Oganization Details),2.1.a.2,,Please provide the company Business Name if it is different from Legal Name,O,Text Field
+GRI 2,GRI 2-1(Oganization Details),2.1.b.1,,Nature of Ownership,M,Drop Down
+GRI 2,GRI 2-1(Oganization Details),2.1.c.1,,Where you are headquarters located at,M,Text Field/Drop down with search bar
+GRI 2,GRI 2-1(Oganization Details),2.1.d.1,,Please provide a list of operating locations,M,Text Field/Drop down with search bar
+GRI 2,GRI 2-2(Sustainability_Reporting),2.2.a.1,,Provide a list all entities included in sustainability reporting,M,Drop Down
+GRI 2,GRI 2-2(Sustainability_Reporting),2.2.b.1,,Provide a brief statement of financial report included in sustainability reporting,M,Text Field
+GRI 2,GRI 2-2(Sustainability_Reporting),2.2.b.2,,Provide the link or reference to the list of entities included in its audited consolidated financial statements or financial information filed on public record,O,Text Field
+GRI 2,GRI 2-2(Sustainability_Reporting),2.2.c.1,,"if the organization consists of multiple entities, then provide the approach used for consolidating the information",M,"Radio button(Y/N) if Yes then display next sub questions of c.1 with the text box to write the information, if no then skip this question and jump to next section"
+GRI 2,GRI 2-2(Sustainability_Reporting),2.2.c.1,c.1.i,provide the approach involves adjustments to consolidate the information for minority interests,M,Text Field
+GRI 2,GRI 2-2(Sustainability_Reporting),2.2.c.1,c.1.ii,"provide the approach takes into account mergers, acquisitions, and disposal of entities or parts of entities",M,Text Field
+GRI 2,GRI 2-2(Sustainability_Reporting),2.2.c.1,c.1.iii,provided how the approach differs across the disclosures in GRI Standard and across material topics,M,Text Field
+GRI 2,GRI-2-3(Reporting period),2.3.a.1,,specify the reporting period for sustainability reporting,M,Text Field/Drop down
+GRI 2,GRI-2-3(Reporting period),2.3.b.1,,"specify the reporting period for its financial reporting and, if it does not align with the period for its sustainability reporting with reason",O,drop down/Text Field to give the reason
+GRI 2,GRI-2-3(Reporting period),2.3.c.1,,provide the publication date of the report or reported information,M,Date
+GRI 2,GRI-2-3(Reporting period),2.3.d.1,,specify the contact point for questions about the report or reported information,M,Text Field
