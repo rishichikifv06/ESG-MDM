@@ -1,0 +1,393 @@
+import React, { useState } from "react";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
+
+const countryList = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "American Samoa",
+    "Andorra",
+    "Angola",
+    "Anguilla",
+    "Antarctica",
+    "Antigua and Barbuda",
+    "Argentina",
+    "Armenia",
+    "Aruba",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belarus",
+    "Belgium",
+    "Belize",
+    "Benin",
+    "Bermuda",
+    "Bhutan",
+    "Bolivia",
+    "Bosnia and Herzegovina",
+    "Botswana",
+    "Bouvet Island",
+    "Brazil",
+    "British Indian Ocean Territory",
+    "Brunei Darussalam",
+    "Bulgaria",
+    "Burkina Faso",
+    "Burundi",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Cape Verde",
+    "Cayman Islands",
+    "Central African Republic",
+    "Chad",
+    "Chile",
+    "China",
+    "Christmas Island",
+    "Cocos (Keeling) Islands",
+    "Colombia",
+    "Comoros",
+    "Congo",
+    "Congo, the Democratic Republic of the",
+    "Cook Islands",
+    "Costa Rica",
+    "Cote D'Ivoire",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czech Republic",
+    "Denmark",
+    "Djibouti",
+    "Dominica",
+    "Dominican Republic",
+    "Ecuador",
+    "Egypt",
+    "El Salvador",
+    "Equatorial Guinea",
+    "Eritrea",
+    "Estonia",
+    "Ethiopia",
+    "Falkland Islands (Malvinas)",
+    "Faroe Islands",
+    "Fiji",
+    "Finland",
+    "France",
+    "French Guiana",
+    "French Polynesia",
+    "French Southern Territories",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Gibraltar",
+    "Greece",
+    "Greenland",
+    "Grenada",
+    "Guadeloupe",
+    "Guam",
+    "Guatemala",
+    "Guinea",
+    "Guinea-Bissau",
+    "Guyana",
+    "Haiti",
+    "Heard Island and Mcdonald Islands",
+    "Holy See (Vatican City State)",
+    "Honduras",
+    "Hong Kong",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Iran, Islamic Republic of",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Kiribati",
+    "North Korea",
+    "South Korea",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Lao People's Democratic Republic",
+    "Latvia",
+    "Lebanon",
+    "Lesotho",
+    "Liberia",
+    "Libya",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Macao",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Martinique",
+    "Mauritania",
+    "Mauritius",
+    "Mayotte",
+    "Mexico",
+    "Micronesia, Federated States of",
+    "Moldova, Republic of",
+    "Monaco",
+    "Mongolia",
+    "Montserrat",
+    "Morocco",
+    "Mozambique",
+    "Myanmar",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "Netherlands",
+    "New Caledonia",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "Niue",
+    "Norfolk Island",
+    "North Macedonia, Republic of",
+    "Northern Mariana Islands",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Palau",
+    "Palestinian Territory, Occupied",
+    "Panama",
+    "Papua New Guinea",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Pitcairn",
+    "Poland",
+    "Portugal",
+    "Puerto Rico",
+    "Qatar",
+    "Reunion",
+    "Romania",
+    "Russian Federation",
+    "Rwanda",
+    "Saint Helena",
+    "Saint Kitts and Nevis",
+    "Saint Lucia",
+    "Saint Pierre and Miquelon",
+    "Saint Vincent and the Grenadines",
+    "Samoa",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Saudi Arabia",
+    "Senegal",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "Solomon Islands",
+    "Somalia",
+    "South Africa",
+    "South Georgia and the South Sandwich Islands",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Suriname",
+    "Svalbard and Jan Mayen",
+    "Swaziland",
+    "Sweden",
+    "Switzerland",
+    "Syrian Arab Republic",
+    "Taiwan",
+    "Tajikistan",
+    "Tanzania, United Republic of",
+    "Thailand",
+    "Timor-Leste",
+    "Togo",
+    "Tokelau",
+    "Tonga",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Turkmenistan",
+    "Turks and Caicos Islands",
+    "Tuvalu",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States of America",
+    "United States Minor Outlying Islands",
+    "Uruguay",
+    "Uzbekistan",
+    "Vanuatu",
+    "Venezuela",
+    "Viet Nam",
+    "Virgin Islands, British",
+    "Virgin Islands, U.S.",
+    "Wallis and Futuna",
+    "Western Sahara",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe",
+    "Åland Islands",
+    "Bonaire, Sint Eustatius and Saba",
+    "Curaçao",
+    "Guernsey",
+    "Isle of Man",
+    "Jersey",
+    "Montenegro",
+    "Saint Barthélemy",
+    "Saint Martin (French part)",
+    "Serbia",
+    "Sint Maarten (Dutch part)",
+    "South Sudan",
+    "Kosovo"
+    ];
+
+const defaultValues = {
+  firstname: "",
+  lastname: "",
+  email: "",
+  password: "",
+  residence: "",
+  passphrase: ""
+};
+
+const Form = () => {
+  const [formValues, setFormValues] = useState(defaultValues);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    sessionStorage.setItem("reg", JSON.stringify(formValues));
+    window.location.replace("./RegistrationResult");
+    // Send data to the backend via POST
+    /*DEEPAK - Uncomment after server side code is implemented */
+    /* fetch("http://localhost:5050/register", {  // Enter your IP address here
+    method: 'POST', 
+    mode: 'cors', 
+    href: '/RegistrationResult',
+    body: JSON.stringify(formValues) // body data type must match "Content-Type" header
+    }) */
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <br/>
+      <br/>
+      <Grid container alignItems="left" justify="left" direction="column" spacing={2}>
+        <Grid item>
+          <TextField
+            id="firstname-input"
+            name="firstname"
+            label="First Name"
+            type="text"
+            required
+            value={formValues.firstname}
+            style={{minWidth: 300}}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            id="lastname-input"
+            name="lastname"
+            label="Last Name"
+            type="text"
+            required
+            value={formValues.lastname}
+            style={{minWidth: 300}}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            id="email-input"
+            name="email"
+            label="Email"
+            type="email"
+            required
+            style={{minWidth: 300}}
+            value={formValues.email}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            id="password-input"
+            name="password"
+            label="Password"
+            type="password"
+            required
+            style={{minWidth: 300}}
+            value={formValues.password}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <Grid item>
+          <FormControl style={{minWidth: 300}}>
+          <InputLabel id="CountryofResidencelabel">Residence</InputLabel>
+            <Select
+              name="residence"
+              labelId="CountryofResidencelabel"
+              label="Residence"
+              value={formValues.residence}
+              required
+              style={{alignItems: "left"}}
+              onChange={handleInputChange}
+            >{countryList.map(function(country, idx) {
+                return <MenuItem key={country} value={country}>{country}</MenuItem>
+                })}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item>
+          <TextField
+            id="passphrase-input"
+            name="passphrase"
+            label="Recovery Pass Phrase"
+            type="password"
+            value={formValues.passphrase}
+            required
+            style={{minWidth: 300}}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <br/>
+        <br/>
+        <Grid item>
+          <em>By creating a Ledger Document © profile you agree to the <a href="https://www.ledgerdocument.com/terms">Terms Of Service</a> and <a href="https://www.ledgerdocument.com/privacy">Privacy Policy.</a></em>
+        </Grid>
+        <Grid item>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
+      </Grid>
+      </Grid>
+    </form>
+  );
+};
+
+export default Form;
